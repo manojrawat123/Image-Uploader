@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my.css' %}">
+    
+    
+    <title>Forms</title>
+</head>
+<body class="bg-orange-100">
+    
+    <h1 class="text-center mt-5 text-2xl">Image Uploader</h1>
+
+    <form action="" method="post" class="text-center" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for i in forms %}
+        <label for="{{i.id_for_label}}">{{i.label}} <br>
+            {{i}} 
+        </label>
+        {% endfor %}
+        <input type="submit" value="Upload Image" class="px-4 py-2 bg-blue-500 rounded-2xl hover:bg-blue-700 text-white">
+        {% comment %} Hello  {% endcomment %}
+    </form>
+        <div>
+            <div class="container grid grid-cols-3 my-5 gap-5" >
+                {% for j in img %}
+                <div class="col-span-1 m-4">
+                    <div class="shadow-2xl rounded">
+                        <div class="h-[15rem]">
+                        <img src="{{j.photo.url}}" alt="" class="h-[100%] img mx-auto">
+                        </div>
+                        <form action="/{{j.id}}" method="post">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <br>
+                                <input type="Submit" value="Delete" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+
+                                <br> <br>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                        
+                        
+                        
+                        
+                        
+                        
+    
+    
+    
+                
+                {% endfor %}
+            </div>
+        </div>
+        
+</body>
+</html>
+           
+
+        
